@@ -22,24 +22,28 @@ app = FastAPI(title="PDF 5MB Compressor")
 
 STRATEGIES = [
     {
+        "id": "clear",
         "name": "清晰",
         "pdfsettings": "/ebook",
         "resolution": 150,
         "jpegq": 85,
     },
     {
+        "id": "standard",
         "name": "标准",
         "pdfsettings": "/screen",
         "resolution": 120,
         "jpegq": 75,
     },
     {
+        "id": "strong",
         "name": "强压缩",
         "pdfsettings": "/screen",
         "resolution": 96,
         "jpegq": 65,
     },
     {
+        "id": "extreme",
         "name": "极限压缩",
         "pdfsettings": "/screen",
         "resolution": 72,
@@ -94,7 +98,7 @@ def compress_pdf(src: Path, workdir: Path) -> tuple[Path, dict]:
         copied = workdir / f"already-under-{uuid.uuid4().hex}.pdf"
         shutil.copy2(src, copied)
         return copied, {
-            "strategy": "无需压缩",
+            "strategy": "skipped",
             "original_size": original_size,
             "output_size": copied.stat().st_size,
         }
@@ -118,7 +122,7 @@ def compress_pdf(src: Path, workdir: Path) -> tuple[Path, dict]:
         if best_meta is None or size < best_meta["output_size"]:
             best_path = out
             best_meta = {
-                "strategy": strategy["name"],
+                "strategy": strategy["id"],
                 "original_size": original_size,
                 "output_size": size,
                 "resolution": strategy["resolution"],
