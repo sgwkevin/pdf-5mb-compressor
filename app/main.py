@@ -18,7 +18,6 @@ MAX_UPLOAD_MB = int(os.getenv("MAX_UPLOAD_MB", "120"))
 MAX_UPLOAD_BYTES = MAX_UPLOAD_MB * 1024 * 1024
 
 app = FastAPI(title="PDF 5MB Compressor")
-app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="static")
 
 
 STRATEGIES = [
@@ -185,3 +184,7 @@ async def compress(background_tasks: BackgroundTasks, file: UploadFile = File(..
 @app.get("/api/health")
 def health():
     return {"ok": True, "target_mb": TARGET_MB, "max_upload_mb": MAX_UPLOAD_MB}
+
+
+app.mount("/", StaticFiles(directory=STATIC_DIR, html=True), name="static")
+
