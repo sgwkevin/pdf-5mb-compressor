@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF 5MB 自动压缩工具</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Team PDF Compressor</p>
+          <h1>PDF 自动压缩到 5MB 以内</h1>
+          <p class="sub">
+            上传 PDF 后自动多档压缩，成功后直接下载。适合提交平台资料、报名表、资质文件等场景。
+          </p>
+        </div>
+        <div class="target">
+          <span>目标大小</span>
+          <strong>≤ 5MB</strong>
+        </div>
+      </section>
+
+      <section class="panel">
+        <form id="uploadForm" class="dropzone">
+          <input id="fileInput" type="file" accept="application/pdf,.pdf" />
+          <div class="dropIcon">PDF</div>
+          <h2>拖入 PDF 文件</h2>
+          <p>或点击选择文件，系统会自动压缩并下载结果</p>
+          <button type="button" id="pickBtn">选择 PDF</button>
+        </form>
+
+        <div id="status" class="status" aria-live="polite">
+          <div class="statusText">等待上传</div>
+          <div class="bar"><span></span></div>
+        </div>
+
+        <div id="result" class="result hidden">
+          <h3>压缩完成</h3>
+          <p id="resultText"></p>
+          <a id="downloadLink" href="#" download>下载压缩后的 PDF</a>
+        </div>
+
+        <div id="error" class="error hidden"></div>
+      </section>
+
+      <section class="notes">
+        <div>
+          <strong>自动多档尝试</strong>
+          <span>清晰、标准、强压缩、极限压缩逐级尝试。</span>
+        </div>
+        <div>
+          <strong>文件自动清理</strong>
+          <span>每次处理使用临时目录，返回结果后自动删除。</span>
+        </div>
+        <div>
+          <strong>无法保证所有文件</strong>
+          <span>如果 PDF 本身太复杂，可能需要拆分或降低图片清晰度。</span>
+        </div>
+      </section>
+    </main>
+
+    <script src="/script.js"></script>
+  </body>
+</html>

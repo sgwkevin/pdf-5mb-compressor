@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: pdf-5mb-compressor
+    env: docker
+    plan: starter
+    autoDeploy: true
+    envVars:
+      - key: TARGET_MB
+        value: "5"
+      - key: MAX_UPLOAD_MB
+        value: "120"
